@@ -39,7 +39,7 @@ class Pair(object):
     """
     def __init__(self, first, second):
         from scheme_builtins import scheme_valid_cdrp, SchemeError
-        if not (second is nil or isinstance(second, Pair) or type(x).__name__ == 'Promise'):
+        if not (second is nil or isinstance(second, Pair) or type(second).__name__ == 'Promise'):
             raise SchemeError("cdr can only be a pair, nil, or a promise but was {}".format(second))
         self.first = first
         self.second = second
@@ -122,14 +122,22 @@ def scheme_read(src):
     if val == 'nil':
         # BEGIN PROBLEM 2
         "*** YOUR CODE HERE ***"
+        return nil
         # END PROBLEM 2
     elif val == '(':
         # BEGIN PROBLEM 2
         "*** YOUR CODE HERE ***"
+        return read_tail(src)
         # END PROBLEM 2
     elif val in quotes:
         # BEGIN PROBLEM 7
         "*** YOUR CODE HERE ***"
+        if (val=="'"):
+            return Pair('quote', Pair(scheme_read(src), nil))
+        elif (val=="`"):
+            return Pair('quasiquote', Pair(scheme_read(src), nil))
+        else:
+            return Pair('unquote', Pair(scheme_read(src), nil))
         # END PROBLEM 7
     elif val not in DELIMITERS:
         return val
@@ -150,10 +158,15 @@ def read_tail(src):
         elif src.current() == ')':
             # BEGIN PROBLEM 2
             "*** YOUR CODE HERE ***"
+            src.remove_front()
+            return nil
             # END PROBLEM 2
         else:
             # BEGIN PROBLEM 2
             "*** YOUR CODE HERE ***"
+            first = scheme_read(src)
+            second = read_tail(src)
+            return Pair(first, second)
             # END PROBLEM 2
     except EOFError:
         raise SyntaxError('unexpected end of file')

@@ -6,7 +6,10 @@
 ; Some utility functions that you may find useful to implement.
 
 (define (cons-all first rests)
-  'replace-this-line)
+  (cond ((null? rests) nil)
+	(else (begin (define current (car rests))
+		     (define current (cons first current))
+		     (cons current (cons-all first (cdr rests)))))))
 
 (define (zip pairs)
   'replace-this-line)

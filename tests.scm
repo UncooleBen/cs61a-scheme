@@ -10,7 +10,76 @@
 ;;; *** Add your own tests here! ***
 ;;; ********************************
 ; BEGIN PROBLEM 0
-'replace-this-line
+
+;my test for problem 5
+
++
+; expect #[+]
+
+(/ 1 0)
+; expect Error
+
+(2)
+; expect Error
+
+(/ 5 2)
+; expect 2.5
+
+(+ 10 10)
+; expect 20
+
+(- 5 6)
+; expect -1
+
+; my test for problem 6
+;;world of warcraft patch version
+(define tides_of_vengeance 8.1)
+; expect tides_of_vengeance
+
+tides_of_vengeance
+; expect 8.1
+
+(define rise_of_azshara (+ tides_of_vengeance 0.1) )
+; expect rise_of_azshara
+
+rise_of_azshara
+; expect 8.2
+
+(define x 0)
+; expect x
+
+((define x (+ x 1)) 2)
+; expect Error
+
+x
+; expect 1
+
+; my test for problem 7
+(quote 1)
+; expect 1
+
+(quote (quote 1))
+; expect (quote 1)
+
+'a
+; expect a
+
+''x
+;expect (quote x)
+
+(quote (1 (2 three (4 5))))
+; (1 (2 three (4 5)))
+
+(car (quote (a b)))
+; expect a
+
+```x
+; expect (quasiquote (quasiquote x))
+
+,x
+; expect Error
+
+
 ; END PROBLEM 0
 
 ;;; These are examples from several sections of "The Structure
@@ -60,7 +129,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Move the following (exit) line down the file to run additional tests. ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(exit)
+
 
 
 ;;; 1.1.2
@@ -81,6 +150,8 @@ size
 (define circumference (* 2 pi radius))
 circumference
 ; expect 62.8318
+
+
 
 ;;; 1.1.4
 
@@ -566,7 +637,7 @@ one-through-four
 
 (let ((x 2)) ((begin (define x (+ x 1)) +) 3 (begin (define x (+ x 1)) x)))
 ; expect 7
-
+(exit)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Scheme Implementations ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
