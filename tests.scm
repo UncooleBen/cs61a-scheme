@@ -79,6 +79,78 @@ x
 ,x
 ; expect Error
 
+; my test for problem 8
+
+(begin (define x 2) (define (f x) (/ x 0)) (f x))
+					; expect Error
+(begin (print 1) (- 1 1) (+ 1 1))
+; expect 2
+
+; my test for problem 9
+
+((lambda (x y) (+ ((lambda (z) z) x) y)) 5 6)
+					; expect 11
+
+(map (lambda (x) (- 0 x)) '(0 1 2 3 4))
+					;expect (0 -1 -2 -3 -4)
+
+					; my test for problem 10
+(define x 1)
+x
+					;expect 1
+(define x +)
+x
+					; expect #[+]
+(define (f x y z) (+ x y z))
+(f 1 2 3)
+					; expect 6
+(define f (lambda (x y z) (+ x y z)))
+(f 1 2 3)
+					; expect 6
+					; my test for problem 11 & 12
+(define (outer x y z) (begin
+		       (define (inner x y) (+ x y z))
+		       (inner 10 11)))
+(outer 1 2 3)
+					; expect 24
+(define (outer x y z) (begin
+			(define x 5)
+			(+ x y z)))
+(outer 1 2 3)
+					; expect 10
+
+					; my test for problem 13
+(or)
+					; expect #f
+(and)
+					; expect #t
+(or 1 2 nil)
+					; expect 1
+(and 1 2 nil)
+					; expect ()
+(and nil 1)
+					; expect 1
+(and (or) 1)
+					; expect #f
+					; my test for problem 14
+(cond (else (define x 1)))
+x
+					; expect 1
+(cond (#t 1)
+      (#t 2))
+; expect 1
+
+					; my test for problem 15
+(define x 1)
+(define y 2)
+(let ((x #f) (y 6)) (if x 1 'false))
+					; expect #f
+					; my test for problem 16
+(define f (mu () (+ x y)))
+(define x 1)
+(define y 2)
+(f) ; expect 3
+
 
 ; END PROBLEM 0
 
@@ -655,7 +727,6 @@ one-through-four
 ;;; Extra credit ;;;
 ;;;;;;;;;;;;;;;;;;;;
 
-(exit)
 
 ; Tail call optimization tests
 
